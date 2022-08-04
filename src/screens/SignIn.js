@@ -66,8 +66,7 @@ const SignIn = ({ navigation }) => {
 
                   <Button
                     handleSubmit={handleSubmit}
-                    isValid={isValid}
-                    values={values}
+                    disabled={values.email === "" || !isValid ? true : false}
                     text={"Sign In"}
                   />
                 </View>

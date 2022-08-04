@@ -1,9 +1,9 @@
 import { Text, Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 
-const Button = ({ handleSubmit, isValid, values, text }) => {
+const Button = ({ handleSubmit, disabled, text }) => {
   const getBtnStyles = () => {
-    if (!isValid || values.email === "") {
+    if (disabled) {
       return HomeStyles.disabledBtn;
     } else {
       return "";
@@ -16,7 +16,7 @@ const Button = ({ handleSubmit, isValid, values, text }) => {
         onPress={() => {
           handleSubmit();
         }}
-        disabled={!isValid || values.email === ""}
+        disabled={disabled}
         android_ripple={{ color: "#ff94e2" }}
       >
         <Text style={HomeStyles.signUpBtnText}>{text}</Text>

@@ -33,6 +33,7 @@ const signUpValidationSchema = yup.object().shape({
 });
 
 const SignUp = ({ navigation }) => {
+
   return (
     <>
       <View
@@ -99,8 +100,7 @@ const SignUp = ({ navigation }) => {
 
                   <Button
                     handleSubmit={handleSubmit}
-                    isValid={isValid}
-                    values={values}
+                    disabled={ values.email ==="" || !isValid ? true: false }
                     text={"Sign Up"}
                   />
                 </View>

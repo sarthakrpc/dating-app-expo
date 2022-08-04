@@ -28,6 +28,7 @@ const CustomInput = (props) => {
             {...inputProps}
           />
         </View>
+		{/* {console.log(props)} */}
         {hasError && <Text style={styles.errorText}>{errors[name]}</Text>}
       </View>
     </>
