@@ -1,11 +1,26 @@
-import Checkbox from "expo-checkbox";
+import { Checkbox } from "react-native-paper";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { Text } from "react-native-paper";
+import { spacing } from "../common/style/styles";
 
 export default function TermsComponent({ children, ...props }) {
+  const [checked, setChecked] = useState(false);
   return (
     <View style={HomeStyles.section}>
-      <BouncyCheckbox
+      <Checkbox
+        status={checked ? "checked" : "unchecked"}
+        onPress={() => {
+          setChecked(!checked);
+          props.value = !checked;
+          props.setFieldValue("terms", !checked);
+        }}
+        {...props}
+      />
+
+      <Text variant="labelSmall">{children}</Text>
+      {/* <BouncyCheckbox
         size={24}
         fillColor="#ed34e1"
         unfillColor="#FFFFFF"
@@ -30,7 +45,7 @@ export default function TermsComponent({ children, ...props }) {
           props.setFieldValue("terms", isChecked);
         }}
         {...props}
-      />
+      /> */}
     </View>
   );
 }
@@ -40,7 +55,8 @@ const HomeStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 16,
+    marginHorizontal: spacing.primaryMargin,
+    marginVertical: 0,
   },
   //   paragraph: {
   //     fontSize: 13,

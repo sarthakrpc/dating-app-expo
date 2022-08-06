@@ -1,7 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import SignUp from "../screens/SignUp";
 import SignIn from "../screens/SignIn";
-import ProfileData from "../screens/OneTimeSetUp/ProfileData";
+import FirstName from "../screens/OneTimeSetUp/FirstName";
+import Dob from "../screens/OneTimeSetUp/Dob";
 
 const Stack = createStackNavigator();
 const SignScreenNavigate = () => {
@@ -12,14 +13,21 @@ const SignScreenNavigate = () => {
         component={SignUp}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="SignIn" 
-	  	component={SignIn} 
-	  	options={{ headerShown: false }}
-	  />
-	  <Stack.Screen name="ProfileData" 
-	  	component={ProfileData} 
-	  	options={{ headerShown: true, title: "" }}
-	  />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FirstName"
+        component={FirstName}
+        options={{ headerShown: true, title: "" }}
+      />
+      <Stack.Screen
+        name="Dob"
+        component={Dob}
+        options={{ headerShown: true, title: "" }}
+      />
     </Stack.Navigator>
   );
 };

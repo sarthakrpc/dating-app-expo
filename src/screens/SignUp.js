@@ -3,9 +3,10 @@ import { Formik, Field } from "formik";
 import * as yup from "yup";
 import TermsComponent from "../components/SignUpLogin/TermsComponent";
 import CustomInput from "../components/SignUpLogin/CustomInput";
-import Button from "../components/SignUpLogin/Button";
+import Button from "../components/SignUpLogin/CustomButton";
 import GoogleSign from "../components/SignUpLogin/GoogleSign";
 import FbSign from "../components/SignUpLogin/FbSign";
+import { spacing } from "../components/common/style/styles";
 
 const signUpValidationSchema = yup.object().shape({
   email: yup
@@ -33,7 +34,6 @@ const signUpValidationSchema = yup.object().shape({
 });
 
 const SignUp = ({ navigation }) => {
-
   return (
     <>
       <View
@@ -48,7 +48,7 @@ const SignUp = ({ navigation }) => {
         }}
       >
         <View>
-          <View style={HomeStyles.mainView}>
+          <View>
             <View>
               <Text style={HomeStyles.titleText}>Sign Up</Text>
             </View>
@@ -88,7 +88,7 @@ const SignUp = ({ navigation }) => {
                     />
                   </View>
 
-                  <View style={{ marginBottom: 12 }}>
+                  <View style={{ marginBottom: spacing.primaryMargin }}>
                     <TermsComponent
                       value={values?.terms}
                       setFieldValue={setFieldValue}
@@ -100,7 +100,7 @@ const SignUp = ({ navigation }) => {
 
                   <Button
                     handleSubmit={handleSubmit}
-                    disabled={ values.email ==="" || !isValid ? true: false }
+                    disabled={values.email === "" || !isValid ? true : false}
                     text={"Sign Up"}
                   />
                 </View>
@@ -112,8 +112,8 @@ const SignUp = ({ navigation }) => {
             <View style={{ opacity: 0.7 }}>
               <Text style={{ textAlign: "center" }}>OR</Text>
             </View>
-            <GoogleSign screenName={"ProfileData"} />
-            <FbSign screenName={"ProfileData"} />
+            <GoogleSign screenName={"FirstName"} />
+            <FbSign screenName={"FirstName"} />
           </View>
         </View>
         <View style={{ marginTop: 32, justifyContent: "center" }}>

@@ -1,10 +1,9 @@
 import { View, Text, Pressable, StyleSheet, Keyboard } from "react-native";
 import { useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import { stylesColor, fontStyles, spacing } from "./style/styles";
 
-export const DateSelect = () => {
-  const [date, setDate] = useState(new Date());
-
+export const DatePicker = ({ date, setDate }) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
@@ -25,7 +24,7 @@ export const DateSelect = () => {
   };
 
   return (
-    <View>
+    <View style={{ marginBottom: spacing.primaryMargin }}>
       <Pressable onPress={showDatepicker} style={styles.inputStyles}>
         <Text style={styles.fontStyles}>{date.toDateString()}</Text>
       </Pressable>
@@ -35,15 +34,13 @@ export const DateSelect = () => {
 
 const styles = StyleSheet.create({
   inputStyles: {
-    borderWidth: 1,
-    padding: 12,
-    paddingLeft: 16,
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: "#0005",
-    backgroundColor: "white",
+    borderBottomWidth: 1,
+    paddingHorizontal: 2,
+    borderColor: stylesColor.primaryColor,
+    backgroundColor: stylesColor.primaryBackgroundColor,
   },
   fontStyles: {
-    fontSize: 16,
+    color: stylesColor.primaryInputTextColor,
+    fontSize: fontStyles.primaryFontSize,
   },
 });
