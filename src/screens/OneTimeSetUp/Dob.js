@@ -1,26 +1,26 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import Button from "../../components/SignUpLogin/CustomButton";
-import { DatePicker } from "../../components/common/DatePicker";
 import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputDateComponent from "../../components/common/SetupScreen/InputDateComponent";
 
 const Dob = ({ navigation }) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const handleSubmit = () => {
-    navigation.navigate("Dob");
+	// alert("sdfsdf")
+    navigation.navigate("Gender");
   };
   const disabled = () => {
-    return date === "";
+    return date === undefined;
   };
   return (
     <ScreenLayout>
       <InputDateComponent
-        title={"Enter Your Birthday"}
+        title={"Enter Your Birthdate"}
         setDate={setDate}
         date={date}
         subtitleText={
-          "You should be atleast 18 years old to use the platform. You age will be publicly available."
+          "You should be atleast 18 years old to use the platform. You age will be publicly visible."
         }
       />
 

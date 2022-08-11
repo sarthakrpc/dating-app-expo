@@ -1,15 +1,10 @@
 import { View } from "react-native";
 import TitleComponent from "./splitComp/TitleComponent";
-import { DatePicker } from "../DatePicker";
+import DatePicker from "../DatePicker";
 import SubTextComponent from "./splitComp/SubTextComponent";
 import { spacing } from "../style/styles";
 
-const InputNameComponent = ({
-  title,
-  subtitleText,
-  date,
-  setDate
-}) => {
+const InputDateComponent = ({ title, subtitleText, date, setDate }) => {
   return (
     <View
       style={{
@@ -18,10 +13,10 @@ const InputNameComponent = ({
       }}
     >
       <TitleComponent title={title} />
-      <DatePicker date={date} setDate = {setDate}/>
+      <DatePicker date={date} setDate={setDate} />
       <SubTextComponent subtitleText={subtitleText} />
     </View>
   );
 };
 
-export default InputNameComponent;
+export default InputDateComponent;

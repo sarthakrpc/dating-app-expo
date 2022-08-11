@@ -5,10 +5,10 @@ import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputNameComponent from "../../components/common/SetupScreen/InputNameComponent";
 
-const FirstName = ({navigation}) => {
+const FirstName = ({ navigation }) => {
   const [name, setName] = useState("");
   const handleSubmit = () => {
-	navigation.navigate("Dob")
+    navigation.navigate("Dob");
   };
   const disabled = () => {
     return name === "";
@@ -23,7 +23,7 @@ const FirstName = ({navigation}) => {
           "Your name will show up whenever someone discovers your Profile on AppName. You can change it only once."
         }
       />
-      <View style={{ flex: 1, flexDirection: "column-reverse" }}>
+      <View style={{ flexDirection: "column-reverse" }}>
         <Button
           disabled={disabled()}
           handleSubmit={handleSubmit}

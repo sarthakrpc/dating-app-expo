@@ -1,46 +1,41 @@
-import { View, Text, Pressable, StyleSheet, Keyboard } from "react-native";
-import { useState } from "react";
-import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import { stylesColor, fontStyles, spacing } from "./style/styles";
+import * as React from "react";
+import { Button } from "react-native-paper";
+import { DatePickerInput } from "react-native-paper-dates";
+import { spacing } from "./style/styles";
+import { View } from "react-native";
+import { withTheme } from "react-native-paper";
 
-export const DatePicker = ({ date, setDate }) => {
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-    setDate(currentDate);
-  };
+function DatePicker({ date, setDate, theme }) {
+  function subtractYears(numOfYears, date = new Date()) {
+    const dateCopy = new Date(date.getTime());
+    dateCopy.setFullYear(dateCopy.getFullYear() - numOfYears);
+    setDate(dateCopy);
+    // return dateCopy;
+  }
 
-  const showMode = (currentMode) => {
-    DateTimePickerAndroid.open({
-      value: date,
-      onChange,
-      mode: currentMode,
-      is24Hour: true,
-    });
-  };
-
-  const showDatepicker = () => {
-    showMode("date");
-    Keyboard.dismiss();
-  };
-
+  React.useEffect(() => {
+    subtractYears(18);
+  }, []);
   return (
-    <View style={{ marginBottom: spacing.primaryMargin }}>
-      <Pressable onPress={showDatepicker} style={styles.inputStyles}>
-        <Text style={styles.fontStyles}>{date.toDateString()}</Text>
-      </Pressable>
-    </View>
+    <>
+      <View style={{ maxHeight: 75 }}>
+        <DatePickerInput
+          locale="en-GB"
+          label="Birthdate"
+          value={date}
+          onChange={(d) => setDate(d)}
+          inputMode="end"
+          autoFocus={true}
+          withModal={false}
+          style={{
+            backgroundColor: theme.colors.flatInputBackground,
+          }}
+          // mode="outlined" (see react-native-paper docs)
+          // other react native TextInput props
+        />
+      </View>
+    </>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  inputStyles: {
-    borderBottomWidth: 1,
-    paddingHorizontal: 2,
-    borderColor: stylesColor.primaryColor,
-    backgroundColor: stylesColor.primaryBackgroundColor,
-  },
-  fontStyles: {
-    color: stylesColor.primaryInputTextColor,
-    fontSize: fontStyles.primaryFontSize,
-  },
-});
+export default withTheme(DatePicker);

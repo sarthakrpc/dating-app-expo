@@ -1,13 +1,22 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import CustomNavigationBar from "./CustomNavigationBar";
 import SignUp from "../screens/SignUp";
 import SignIn from "../screens/SignIn";
 import FirstName from "../screens/OneTimeSetUp/FirstName";
 import Dob from "../screens/OneTimeSetUp/Dob";
+import Gender from "../screens/OneTimeSetUp/Gender";
+import SexualOrientation from "../screens/OneTimeSetUp/SexualOrientation";
+import Interests from "../screens/OneTimeSetUp/Interests";
 
 const Stack = createStackNavigator();
 const SignScreenNavigate = () => {
   return (
-    <Stack.Navigator initialRouteName="SignIn">
+    <Stack.Navigator
+      initialRouteName="SignIn"
+      screenOptions={{
+        header: (props) => <CustomNavigationBar {...props} />,
+      }}
+    >
       <Stack.Screen
         name="SignUp"
         component={SignUp}
@@ -26,6 +35,21 @@ const SignScreenNavigate = () => {
       <Stack.Screen
         name="Dob"
         component={Dob}
+        options={{ headerShown: true, title: "" }}
+      />
+      <Stack.Screen
+        name="Gender"
+        component={Gender}
+        options={{ headerShown: true, title: "" }}
+      />
+      <Stack.Screen
+        name="SexualOrientation"
+        component={SexualOrientation}
+        options={{ headerShown: true, title: "" }}
+      />
+      <Stack.Screen
+        name="Passion"
+        component={Interests}
         options={{ headerShown: true, title: "" }}
       />
     </Stack.Navigator>

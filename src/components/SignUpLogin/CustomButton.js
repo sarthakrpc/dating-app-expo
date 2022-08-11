@@ -1,4 +1,4 @@
-import { Text, Pressable, StyleSheet, View } from "react-native";
+// import { Text, Pressable, StyleSheet, View } from "react-native";
 // import { stylesColor, fontStyles, spacing } from "../common/style/styles";
 import { Button } from "react-native-paper";
 import { fontStyles } from "../common/style/styles";
@@ -17,10 +17,13 @@ const CustomButton = ({ handleSubmit, disabled, text }) => {
       onPress={handleSubmit}
       disabled={disabled}
       mode={"contained"}
-      theme={{ roundness: 2, typescale: {labelLarge : {fontSize: fontStyles.primaryFontSize}} }}
-      style={{ paddingVertical: 4 }}
+      theme={{
+        typescale: { labelLarge: { fontSize: fontStyles.primaryFontSize } },
+      }}
+      contentStyle={{ paddingVertical: 2 }}
       //loading={true}
-	  uppercase={true}
+      uppercase={true}
+      elevation={0}
     >
       {text}
     </Button>

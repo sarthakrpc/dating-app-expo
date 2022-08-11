@@ -1,6 +1,7 @@
 import { TextInput } from "react-native-paper";
 import { Text, StyleSheet, View } from "react-native";
 import { useState } from "react";
+import { stylesColor } from "../common/style/styles";
 
 const CustomInput = (props) => {
   const {
@@ -24,6 +25,7 @@ const CustomInput = (props) => {
             //   styles.input,
             //   props.multiline && { height: props.numberOfLines * 40 },
             // ]}
+            dense={true}
             mode="outlined"
             value={value}
             onChangeText={(text) => onChange(name)(text)}
@@ -36,7 +38,7 @@ const CustomInput = (props) => {
             keyboardType={inputProps.keyboardType}
             label={inputProps.placeholder}
             error={hasError}
-            outlineColor="#fccaf9"
+            // outlineColor={stylesColor.primaryBorderColor}
             right={
               inputProps.secureTextEntry ? (
                 <TextInput.Icon name="eye" onPress={visibilityHandler} />

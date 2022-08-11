@@ -1,11 +1,13 @@
 import { Checkbox } from "react-native-paper";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+// import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { Text } from "react-native-paper";
 import { spacing } from "../common/style/styles";
+import { useTheme } from "react-native-paper";
 
-export default function TermsComponent({ children, ...props }) {
+export default function TermsComponent({ children, ...props }) { 
+	const {colors} = useTheme()
   const [checked, setChecked] = useState(false);
   return (
     <View style={HomeStyles.section}>
@@ -17,6 +19,7 @@ export default function TermsComponent({ children, ...props }) {
           props.setFieldValue("terms", !checked);
         }}
         {...props}
+		color={colors.primary}
       />
 
       <Text variant="labelSmall">{children}</Text>

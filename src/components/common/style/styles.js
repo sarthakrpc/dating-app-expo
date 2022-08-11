@@ -1,5 +1,6 @@
 const stylesColor = {
   primaryColor: "#ed34e1",
+  primaryBorderColor: "#f79cf1",
   primaryDisabledColor: "#ed34e150",
   primaryInputTextColor: "rgba(0,0,0,0.8)",
   primarySubTextColor: "rgba(0,0,0,0.45)",
@@ -8,7 +9,7 @@ const stylesColor = {
 };
 
 const spacing = {
-  primaryPaddimg: 12,
+  primaryPadding: 12,
   secondaryPadding: 24,
 
   primarySmallMargin:8,
