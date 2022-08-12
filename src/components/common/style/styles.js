@@ -9,6 +9,7 @@ const stylesColor = {
 };
 
 const spacing = {
+  primaryTinyPadding: 4,
   primaryPadding: 12,
   secondaryPadding: 24,
 

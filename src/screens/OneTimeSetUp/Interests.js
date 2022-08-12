@@ -6,22 +6,42 @@ import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLa
 // import VisibilityCheckBox from "../../components/common/SetupScreen/splitComp/VisibilityCheckBox";
 
 const Interests = ({ navigation }) => {
-  const allInterests = [];
+ const allInterests = [];
+  const [myInterest, setMyInterest] = useState([]);
+  const checkInterestList = (interest) => {
+    const found = myInterest.find((val) => {
+      return val === interest;
+    });
+    return found;
+  };
+  const handleList = (interest) => {
+    const found = checkInterestList(interest);
+
+    !found && myInterest.length < 10
+      ? setMyInterest((myInterest) => [...myInterest, interest])
+      : setMyInterest(
+          myInterest.filter((selectedInterest) => selectedInterest !== interest)
+        );
+  };
+  const updateNos = () => {
+    return myInterest.length;
+  };
   const handleSubmit = () => {
     // navigation.navigate("SignIn");
   };
   const disabled = () => {
-    return false;
+    return myInterest.length < 3;
   };
   return (
     <ScreenLayout>
-      <View>
         <InputInterestComponent
           title={"Choose Your Interests"}
-          subtitleText={"Select a minimum of 5 Interests"}
+          subtitleText={"Select a minimum of 3 Interests"}
           allInterests={allInterests}
+          handleList={handleList}
+          checkInterestList={checkInterestList}
+          updateNos={updateNos}
         />
-      </View>
       <View style={{ flexDirection: "column-reverse" }}>
         <Button
           disabled={disabled()}
