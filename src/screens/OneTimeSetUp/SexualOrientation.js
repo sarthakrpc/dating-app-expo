@@ -12,7 +12,7 @@ const SexualOrientation = ({ navigation }) => {
   const allType = ["Heterosexual | Straight", "Homosexual | Gay | Lesbian", "Bisexual"];
 
   const handleSubmit = () => {
-    navigation.navigate("Passion");
+    navigation.navigate("Interests");
   };
   const disabled = () => {
     return type === "";

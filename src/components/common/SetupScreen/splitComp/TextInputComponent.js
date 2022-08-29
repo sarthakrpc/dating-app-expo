@@ -3,7 +3,7 @@ import { stylesColor, fontStyles, spacing } from "../../style/styles";
 import { TextInput as PaperInput } from "react-native-paper";
 import { withTheme } from "react-native-paper";
 
-const TextInputComponent = ({ placeholderText, setName, theme }) => {
+const TextInputComponent = ({ placeholderText, handleTextData, theme,value }) => {
   return (
     <View style={{ marginBottom: spacing.primarySmallMargin }}>
       {/* <TextInput
@@ -19,8 +19,9 @@ const TextInputComponent = ({ placeholderText, setName, theme }) => {
         mode="flat"
         label={placeholderText}
         onChangeText={(newText) => {
-          setName(newText);
+			handleTextData(newText);
         }}
+		value={value}
 		autoFocus={true}
 		style={{ backgroundColor: theme.colors.flatInputBackground }}
       />

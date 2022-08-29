@@ -4,7 +4,7 @@ import TextInputComponent from "./splitComp/TextInputComponent";
 import SubTextComponent from "./splitComp/SubTextComponent";
 import { spacing } from "../style/styles";
 
-const InputNameComponent = ({title, placeholderText, subtitleText,setName}) => {
+const InputNameComponent = ({title, placeholderText, subtitleText,handleTextData, firstName}) => {
   return (
     <View
       style={{
@@ -13,7 +13,7 @@ const InputNameComponent = ({title, placeholderText, subtitleText,setName}) => {
       }}
     >
       <TitleComponent title={title}/>
-      <TextInputComponent placeholderText={placeholderText} setName={setName}/>
+      <TextInputComponent placeholderText={placeholderText} handleTextData={handleTextData} value={firstName}/>
       <SubTextComponent subtitleText={subtitleText} />
     </View>
   );

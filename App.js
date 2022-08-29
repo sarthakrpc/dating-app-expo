@@ -9,6 +9,8 @@ import { stylesColor } from "./src/components/common/style/styles";
 import { en, enGB, registerTranslation } from "react-native-paper-dates";
 registerTranslation("en", en);
 registerTranslation("en-GB", enGB);
+import axios from "axios";
+import { AuthProvider } from "./src/context/AuthProvider";
 
 const theme = {
   ...DefaultTheme,
@@ -28,13 +30,17 @@ const theme = {
   },
 };
 
+axios.defaults.baseURL = "http://10.0.2.2:3500/api";
+
 export default function App() {
   return (
     <PaperProvider theme={theme}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <MainRouting />
-        <StatusBar style="auto" />
-      </SafeAreaView>
+      <AuthProvider>
+        <SafeAreaView style={{ flex: 1 }}>
+          <MainRouting />
+          <StatusBar style="auto" />
+        </SafeAreaView>
+      </AuthProvider>
     </PaperProvider>
   );
 }

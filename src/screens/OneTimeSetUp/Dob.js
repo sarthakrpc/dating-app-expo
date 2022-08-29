@@ -1,26 +1,39 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
+import dayjs from "dayjs";
 import Button from "../../components/SignUpLogin/CustomButton";
-import { useState } from "react";
+// import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputDateComponent from "../../components/common/SetupScreen/InputDateComponent";
+import setupHook from "../../hooks/setupHook";
 
 const Dob = ({ navigation }) => {
-  const [date, setDate] = useState();
+  const { handleData, returnData } = setupHook();
+  const { birthDate } = returnData();
+  console.log(returnData());
+
+  const handleDate = (date) => {
+    const data = { birthDate: date };
+    handleData(data);
+  };
+
   const handleSubmit = () => {
-	// alert("sdfsdf")
+    const currDate = dayjs(new Date());
+    console.log(currDate.diff(dayjs(birthDate), "year"));
     navigation.navigate("Gender");
   };
+  
   const disabled = () => {
-    return date === undefined;
+    console.log(returnData());
+    return birthDate === undefined;
   };
   return (
     <ScreenLayout>
       <InputDateComponent
         title={"Enter Your Birthdate"}
-        setDate={setDate}
-        date={date}
+        setDate={handleDate}
+        date={birthDate}
         subtitleText={
-          "You should be atleast 18 years old to use the platform. You age will be publicly visible."
+          "You should be atleast 18 years old to use the platform. Your age will be publicly visible."
         }
       />
 

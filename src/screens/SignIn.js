@@ -1,11 +1,14 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
+import { useContext } from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
+import axios from "axios";
 import CustomInput from "../components/SignUpLogin/CustomInput";
 import CustomButton from "../components/SignUpLogin/CustomButton";
 import GoogleSign from "../components/SignUpLogin/GoogleSign";
 import FbSign from "../components/SignUpLogin/FbSign";
 import { spacing } from "../components/common/style/styles";
+import AuthContext from "../context/AuthProvider";
 
 const signUpValidationSchema = yup.object().shape({
   email: yup
@@ -19,6 +22,40 @@ const signUpValidationSchema = yup.object().shape({
 });
 
 const SignIn = ({ navigation }) => {
+  const { setAuth } = useContext(AuthContext);
+  const postValues = async (values) => {
+    axios
+      .post(`/user/login`, {
+        email: values.email,
+        password: values.password,
+      })
+      .then((response) => {
+        // console.log(response.data);
+        const data = response.data;
+
+        setAuth((prevState) => ({
+          ...prevState,
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+          profileData: data.profileData,
+        }));
+      })
+      .catch((error) => {
+        if (error.response.data.message) {
+          Alert.alert("Error", error.response.data.message, [
+            {
+              text: "Ok",
+            },
+          ]);
+        } else {
+          Alert.alert("Error", "Something went wrong", [
+            {
+              text: "Ok",
+            },
+          ]);
+        }
+      });
+  };
   return (
     <>
       <View
@@ -45,11 +82,13 @@ const SignIn = ({ navigation }) => {
                 email: "",
                 password: "",
               }}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => {
+                postValues(values);
+              }}
             >
               {({ handleSubmit, isValid, values }) => (
                 <View>
-                  <View style={{marginBottom: spacing.primarySmallMargin}}>
+                  <View style={{ marginBottom: spacing.primarySmallMargin }}>
                     <Field
                       component={CustomInput}
                       name="email"
@@ -85,13 +124,13 @@ const SignIn = ({ navigation }) => {
             </View>
           </View>
 
-          <View style={{ marginTop: 20 }}>
+          {/* <View style={{ marginTop: 20 }}>
             <View style={{ opacity: 0.7, marginBottom: 2 }}>
               <Text style={{ textAlign: "center" }}>OR</Text>
             </View>
-            <GoogleSign screenName={"FirstName"} />
-            <FbSign screenName={"FirstName"} />
-          </View>
+            <GoogleSign screenName={"FirstTimePage"} />
+            <FbSign screenName={"FirstTimePage"} />
+          </View> */}
         </View>
         <View style={{ marginTop: 32, justifyContent: "center" }}>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
