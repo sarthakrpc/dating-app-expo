@@ -1,17 +1,25 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import Button from "../../components/SignUpLogin/CustomButton";
-import { useState } from "react";
+// import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputNameComponent from "../../components/common/SetupScreen/InputNameComponent";
-import setupHook from "../../hooks/setupHook";
+// import setupHook from "../../hooks/useSetupStore";
+import useSetupStore from "../../hooks/useSetupStore";
 
 const FirstName = ({ navigation }) => {
-  const { handleData, returnData } = setupHook();
-  const { firstName } = returnData();
+  //   const { handleData, returnData } = setupHook();
+  //   const { firstName } = returnData();
+
+  const firstName = useSetupStore((state) => state.setupData.firstName);
+  const addData = useSetupStore((state) => state.setData);
+//   console.log(useSetupStore((state) => state.setupData));
 
   const handleTextData = (newText) => {
     const data = { firstName: newText };
-    handleData(data);
+    addData(data);
+    //   const addData = useSetupStore((state) => state.setData(data));
+    //   addData();
+    // handleData(data);
   };
 
   const handleSubmit = () => {

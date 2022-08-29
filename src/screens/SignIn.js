@@ -41,7 +41,7 @@ const SignIn = ({ navigation }) => {
         }));
       })
       .catch((error) => {
-        if (error.response.data.message) {
+        if (error.response?.data?.message) {
           Alert.alert("Error", error.response.data.message, [
             {
               text: "Ok",

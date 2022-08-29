@@ -1,15 +1,20 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View } from "react-native";
 import Button from "../../components/SignUpLogin/CustomButton";
-import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputGenderComponent from "../../components/common/SetupScreen/InputGenderComponent";
-import VisibilityCheckBox from "../../components/common/SetupScreen/splitComp/VisibilityCheckBox";
+import useSetupStore from "../../hooks/useSetupStore";
 
 const Gender = ({ navigation }) => {
-  const [genderVal, setGenderVal] = useState("");
-  //   const [checked, setChecked] = useState(false);
-
   const allGenders = ["Male", "Female", "Other"];
+  const genderVal = useSetupStore((state) => state.setupData.gender);
+  const addData = useSetupStore((state) => state.setData);
+
+//   console.log(useSetupStore((state) => state.setupData));
+
+  const handleGenderVal = (gender) => {
+    const data = { gender: gender };
+    addData(data);
+  };
 
   const handleSubmit = () => {
     navigation.navigate("SexualOrientation");
@@ -23,7 +28,7 @@ const Gender = ({ navigation }) => {
         title={"Select your Gender"}
         allGenders={allGenders}
         genderVal={genderVal}
-        setGenderVal={setGenderVal}
+        setGenderVal={handleGenderVal}
       />
       <View style={{ flexDirection: "column-reverse" }}>
         <Button

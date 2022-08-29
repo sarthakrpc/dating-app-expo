@@ -10,7 +10,7 @@ function DatePicker({ date, setDate, theme }) {
     const dateCopy = new Date(date.getTime());
     dateCopy.setFullYear(dateCopy.getFullYear() - numOfYears);
     setDate(dateCopy);
-	console.log(dateCopy);
+	// console.log(dateCopy);
     // return dateCopy;
   }
 

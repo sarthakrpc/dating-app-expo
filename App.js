@@ -30,7 +30,7 @@ const theme = {
   },
 };
 
-axios.defaults.baseURL = "http://10.0.2.2:3500/api";
+axios.defaults.baseURL = "https://cef6-49-37-70-219.ngrok.io/api";
 
 export default function App() {
   return (

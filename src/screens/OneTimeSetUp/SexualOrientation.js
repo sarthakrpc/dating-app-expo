@@ -4,25 +4,46 @@ import { useState } from "react";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
 import InputSexualOrientationComponent from "../../components/common/SetupScreen/InputSexualOrientationComponent";
 import VisibilityCheckBox from "../../components/common/SetupScreen/splitComp/VisibilityCheckBox";
+import useSetupStore from "../../hooks/useSetupStore";
 
 const SexualOrientation = ({ navigation }) => {
-  const [type, setType] = useState("");
-  const [checked, setChecked] = useState(false);
+  //   const [type, setType] = useState("");
+  //   const [checked, setChecked] = useState(false);
+  const allType = [
+    "Heterosexual | Straight",
+    "Homosexual | Gay | Lesbian",
+    "Bisexual",
+  ];
+  const sexualOrientation = useSetupStore(
+    (state) => state.setupData.sexualOrientation
+  );
+  const visibileSexualOrientation = useSetupStore(
+    (state) => state.setupData.visibileSexualOrientation
+  );
+  const addData = useSetupStore((state) => state.setData);
 
-  const allType = ["Heterosexual | Straight", "Homosexual | Gay | Lesbian", "Bisexual"];
+  const setChecked = (visibileSexualOrientation) => {
+    const data = { visibileSexualOrientation: visibileSexualOrientation };
+    addData(data);
+  };
+
+  const setType = (sexualOrientation) => {
+    const data = { sexualOrientation: sexualOrientation };
+    addData(data);
+  };
 
   const handleSubmit = () => {
     navigation.navigate("Interests");
   };
   const disabled = () => {
-    return type === "";
+    return sexualOrientation === "";
   };
   return (
     <ScreenLayout>
       <InputSexualOrientationComponent
         title={"Select your Sexual Orientation"}
         allType={allType}
-        type={type}
+        type={sexualOrientation}
         setType={setType}
       />
       <View style={{ flexDirection: "column-reverse" }}>
@@ -32,7 +53,7 @@ const SexualOrientation = ({ navigation }) => {
           text={"Next"}
         />
         <VisibilityCheckBox
-          checked={checked}
+          checked={visibileSexualOrientation}
           setChecked={setChecked}
           label={"Keep my Sexual Orientation private"}
         />
