@@ -6,17 +6,17 @@ import { View } from "react-native";
 import { withTheme } from "react-native-paper";
 
 function DatePicker({ date, setDate, theme }) {
-  function subtractYears(numOfYears, date = new Date()) {
-    const dateCopy = new Date(date.getTime());
-    dateCopy.setFullYear(dateCopy.getFullYear() - numOfYears);
-    setDate(dateCopy);
-	// console.log(dateCopy);
-    // return dateCopy;
-  }
+//   function subtractYears(numOfYears, date = new Date()) {
+//     const dateCopy = new Date(date.getTime());
+//     dateCopy.setFullYear(dateCopy.getFullYear() - numOfYears);
+//     setDate(dateCopy);
+// 	// console.log(dateCopy);
+//     // return dateCopy;
+//   }
 
-  React.useEffect(() => {
-    subtractYears(18);
-  }, []);
+//   React.useEffect(() => {
+//     subtractYears(16);
+//   }, []);
   return (
     <>
       <View style={{ maxHeight: 75 }}>

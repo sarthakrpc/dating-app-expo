@@ -1,9 +1,7 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import SignScreenNavigate from "./SignScreenNavigate";
 import { SetupNavigate } from "./SetupNavigate";
-
-import { useContext } from "react";
-import AuthContext from "../context/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -14,7 +12,8 @@ const MyTheme = {
 };
 
 const MainRouting = () => {
-  const { auth } = useContext(AuthContext);
+  const { auth } = useAuth();
+
   return (
     <>
       <NavigationContainer theme={MyTheme}>

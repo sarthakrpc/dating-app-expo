@@ -16,10 +16,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     saveRefreshTokens();
-    console.log(auth);
-    // return () => {
-
-    // }
   }, [auth.refreshToken]);
 
   return (

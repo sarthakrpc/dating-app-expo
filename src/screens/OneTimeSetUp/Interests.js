@@ -1,27 +1,35 @@
-import { useState } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { View, Text } from "react-native";
 import Button from "../../components/SignUpLogin/CustomButton";
 import InputInterestComponent from "../../components/common/SetupScreen/InputInterestComponent";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
-// import VisibilityCheckBox from "../../components/common/SetupScreen/splitComp/VisibilityCheckBox";
+import { getAllInterests } from "../../api/getAPICalls";
+import useSetupStore from "../../hooks/useSetupStore";
 
 const Interests = ({ navigation }) => {
- const allInterests = [];
-  const [myInterest, setMyInterest] = useState([]);
+  const { isLoading, error, data } = useQuery(["allInterest"], getAllInterests);
+  const myInterest = useSetupStore((state) => state.setupData.interests);
+  const addData = useSetupStore((state) => state.setData);
+
   const checkInterestList = (interest) => {
     const found = myInterest.find((val) => {
       return val === interest;
     });
     return found;
   };
+  const addInterest = (interest) => {
+    const interests = [...myInterest, interest];
+    addData({ interests });
+  };
+  const removeInterest = (interest) => {
+    const interests = myInterest.filter((e) => e != interest);
+    addData({ interests });
+  };
   const handleList = (interest) => {
     const found = checkInterestList(interest);
-
     !found && myInterest.length < 10
-      ? setMyInterest((myInterest) => [...myInterest, interest])
-      : setMyInterest(
-          myInterest.filter((selectedInterest) => selectedInterest !== interest)
-        );
+      ? addInterest(interest)
+      : removeInterest(interest);
   };
   const updateNos = () => {
     return myInterest.length;
@@ -34,14 +42,21 @@ const Interests = ({ navigation }) => {
   };
   return (
     <ScreenLayout>
+      {isLoading ? (
+        <Text> Loading... </Text>
+      ) : error ? (
+        <Text> Error... {error.message} </Text>
+      ) : (
         <InputInterestComponent
           title={"Choose Your Interests"}
           subtitleText={"Select a minimum of 3 Interests"}
-          allInterests={allInterests}
+          allInterests={data}
           handleList={handleList}
           checkInterestList={checkInterestList}
           updateNos={updateNos}
         />
+      )}
+
       <View style={{ flexDirection: "column-reverse" }}>
         <Button
           disabled={disabled()}

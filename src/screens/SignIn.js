@@ -1,14 +1,16 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../api/axiosPrivate";
 import CustomInput from "../components/SignUpLogin/CustomInput";
 import CustomButton from "../components/SignUpLogin/CustomButton";
 import GoogleSign from "../components/SignUpLogin/GoogleSign";
 import FbSign from "../components/SignUpLogin/FbSign";
 import { spacing } from "../components/common/style/styles";
-import AuthContext from "../context/AuthProvider";
+// import AuthContext from "../context/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const signUpValidationSchema = yup.object().shape({
   email: yup
@@ -22,7 +24,7 @@ const signUpValidationSchema = yup.object().shape({
 });
 
 const SignIn = ({ navigation }) => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const postValues = async (values) => {
     axios
       .post(`/user/login`, {
