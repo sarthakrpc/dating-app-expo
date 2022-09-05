@@ -1,9 +1,13 @@
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const getAllInterests = async () => {
+const getApiCalls = () => {
   const axiosPrivate = useAxiosPrivate();
-  const { data } = await axiosPrivate.get("/profile/allInterests");
-  return data;
+  const getAllInterests = async () => {
+    const { data } = await axiosPrivate.get("/profile/allInterests");
+    return data;
+  };
+
+  return { getAllInterests };
 };
 
-export { getAllInterests };
+export default getApiCalls;

@@ -3,11 +3,13 @@ import { View, Text } from "react-native";
 import Button from "../../components/SignUpLogin/CustomButton";
 import InputInterestComponent from "../../components/common/SetupScreen/InputInterestComponent";
 import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLayout";
-import { getAllInterests } from "../../api/getAPICalls";
 import useSetupStore from "../../hooks/useSetupStore";
+import getApiCalls from "../../api/getAPICalls";
 
 const Interests = ({ navigation }) => {
+  const { getAllInterests } = getApiCalls();
   const { isLoading, error, data } = useQuery(["allInterest"], getAllInterests);
+
   const myInterest = useSetupStore((state) => state.setupData.interests);
   const addData = useSetupStore((state) => state.setData);
 
