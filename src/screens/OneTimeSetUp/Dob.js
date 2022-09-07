@@ -16,6 +16,7 @@ const Dob = ({ navigation }) => {
   const addData = useSetupStore((state) => state.setData);
 
   const handleDate = (date) => {
+	console.log(date);
     const data = { birthDate: date };
     addData(data);
     navigation.setOptions({ headerStyle: { backgroundColor: "#000" } });

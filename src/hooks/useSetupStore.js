@@ -6,7 +6,7 @@ const useSetupStore = create((set) => ({
     birthDate: subtractYears(16),
     gender: "",
     sexualOrientation: "",
-    visibileSexualOrientation: false,
+    privateSexualOrientation: false,
     interests: [],
   },
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { ScrollView } from "react-native";
-import { Surface, Chip } from "react-native-paper";
+import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
+import { Chip } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 import { spacing } from "../../style/styles";
 
@@ -12,32 +12,32 @@ const ChipStack = ({ allInterests, handleList, checkInterestList }) => {
         flexDirection: "row",
         justifyContent: "center",
         flexWrap: "wrap",
-		padding: spacing.primaryTinyPadding,
-		// paddingVertical: spacing.primaryPadding,
-		// borderRadius: roundness,
-		// backgroundColor: colors.flatInputBackground
+        padding: spacing.primaryTinyPadding,
+        // paddingVertical: spacing.primaryPadding,
+        // borderRadius: roundness,
+        // backgroundColor: colors.flatInputBackground
       }}
     >
       {allInterests
         ? allInterests.map((interest) => (
             <React.Fragment key={interest}>
-              <Chip
-                style={
+              <Pressable
+                style={[
+                  styles.chip,
                   checkInterestList(interest)
                     ? {
                         backgroundColor: colors.flatInputBackground,
-                        margin: 4,
-                        elevation: 4,
+                        borderColor: colors.primary,
                       }
-                    : { backgroundColor: colors.background, margin: 4 }
-                }
+                    : {},
+                ]}
                 mode={"outlined"}
                 onPress={() => {
                   handleList(interest);
                 }}
               >
-                {interest}
-              </Chip>
+                <Text style={{letterSpacing: 1}}>{interest}</Text>
+              </Pressable>
             </React.Fragment>
           ))
         : ""}
@@ -46,3 +46,13 @@ const ChipStack = ({ allInterests, handleList, checkInterestList }) => {
 };
 
 export default ChipStack;
+
+const styles = StyleSheet.create({
+  chip: {
+    margin: spacing.primaryTinyMargin,
+    padding: spacing.primarySmallPadding,
+	paddingHorizontal: spacing.primaryMargin,
+    borderRadius: 20,
+    borderWidth: 0.1,
+  },
+});

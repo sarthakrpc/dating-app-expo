@@ -14,6 +14,7 @@ const useRefreshToken = () => {
       ...prevState,
       accessToken: response.data.accessToken,
       profileData: response.data.profileData,
+	  imageData: response.data.imageData
     }));
 
     return response.data.accessToken;

@@ -12,8 +12,10 @@ const InputInterestComponent = ({
   allInterests,
   handleList,
   checkInterestList,
-  updateNos
+  updateNos,
+  myInterest
 }) => {
+  const getNo = updateNos();
   return (
     <View
       style={{
@@ -24,12 +26,13 @@ const InputInterestComponent = ({
       <TitleComponent title={title} />
       <Surface style={styles.subStyles}>
         <Subheading> {subtitleText} </Subheading>
-        <Chip mode="outlined">{updateNos()} / 10</Chip>
+        <Chip mode="outlined">{getNo} / 10</Chip>
       </Surface>
       <ChipStack
         allInterests={allInterests}
         handleList={handleList}
         checkInterestList={checkInterestList}
+		myInterest={myInterest}
       />
     </View>
   );

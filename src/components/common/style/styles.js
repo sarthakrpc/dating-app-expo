@@ -10,10 +10,12 @@ const stylesColor = {
 
 const spacing = {
   primaryTinyPadding: 4,
+  primarySmallPadding: 8,
   primaryPadding: 12,
   secondaryPadding: 24,
 
-  primarySmallMargin:8,
+  primaryTinyMargin: 4,
+  primarySmallMargin: 8,
   primaryMargin: 12,
   secondaryMargin: 24,
 

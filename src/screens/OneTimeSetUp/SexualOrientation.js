@@ -9,22 +9,26 @@ import useSetupStore from "../../hooks/useSetupStore";
 const SexualOrientation = ({ navigation }) => {
   //   const [type, setType] = useState("");
   //   const [checked, setChecked] = useState(false);
-  const allType = [
+  const allType = ["Straight", "Homosexual", "Bisexual"];
+
+  const label = [
     "Heterosexual | Straight",
     "Homosexual | Gay | Lesbian",
     "Bisexual",
   ];
+
   const sexualOrientation = useSetupStore(
     (state) => state.setupData.sexualOrientation
   );
-  const visibileSexualOrientation = useSetupStore(
-    (state) => state.setupData.visibileSexualOrientation
+  const privateSexualOrientation = useSetupStore(
+    (state) => state.setupData.privateSexualOrientation
   );
   const addData = useSetupStore((state) => state.setData);
 
-  const setChecked = (visibileSexualOrientation) => {
-    const data = { visibileSexualOrientation: visibileSexualOrientation };
+  const setChecked = (privateSexualOrientation) => {
+    const data = { privateSexualOrientation: privateSexualOrientation };
     addData(data);
+	console.log(privateSexualOrientation);
   };
 
   const setType = (sexualOrientation) => {
@@ -45,6 +49,7 @@ const SexualOrientation = ({ navigation }) => {
         allType={allType}
         type={sexualOrientation}
         setType={setType}
+		label={label}
       />
       <View style={{ flexDirection: "column-reverse" }}>
         <Button
@@ -53,7 +58,7 @@ const SexualOrientation = ({ navigation }) => {
           text={"Next"}
         />
         <VisibilityCheckBox
-          checked={visibileSexualOrientation}
+          checked={privateSexualOrientation}
           setChecked={setChecked}
           label={"Keep my Sexual Orientation private"}
         />

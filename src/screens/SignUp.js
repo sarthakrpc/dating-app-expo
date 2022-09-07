@@ -54,6 +54,7 @@ const SignUp = ({ navigation }) => {
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
           profileData: data.profileData,
+          imageData: data.imageData,
         }));
       })
       .catch((error) => {

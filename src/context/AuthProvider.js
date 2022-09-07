@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     accessToken: "",
     refreshToken: "",
     profileData: false,
+	imageData: false
   });
 
   const saveRefreshTokens = async () => {

@@ -19,7 +19,8 @@ const MainRouting = () => {
       <NavigationContainer theme={MyTheme}>
         {!auth.accessToken ? (
           <SignScreenNavigate />
-        ) : auth.accessToken && !auth.profileData ? (
+        ) : (auth.accessToken && !auth.profileData) ||
+          (auth.accessToken && !auth.imageData) ? (
           <SetupNavigate />
         ) : (
           ""

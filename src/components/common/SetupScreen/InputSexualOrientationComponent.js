@@ -3,7 +3,13 @@ import TitleComponent from "./splitComp/TitleComponent";
 import { spacing } from "../style/styles";
 import TypeSelector from "./splitComp/TypeSelector";
 
-const InputSexualOrientationComponent = ({ title, allType, type, setType }) => {
+const InputSexualOrientationComponent = ({
+  title,
+  allType,
+  type,
+  setType,
+  label,
+}) => {
   return (
     <View
       style={{
@@ -13,7 +19,12 @@ const InputSexualOrientationComponent = ({ title, allType, type, setType }) => {
       }}
     >
       <TitleComponent title={title} />
-      <TypeSelector allType ={allType} type={type} setType={setType} />
+      <TypeSelector
+        allType={allType}
+        type={type}
+        setType={setType}
+        label={label}
+      />
     </View>
   );
 };

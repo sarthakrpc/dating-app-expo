@@ -6,6 +6,7 @@ import useSetupStore from "../../hooks/useSetupStore";
 
 const Gender = ({ navigation }) => {
   const allGenders = ["Male", "Female", "Other"];
+  const label = ["Male", "Female", "Other"];
   const genderVal = useSetupStore((state) => state.setupData.gender);
   const addData = useSetupStore((state) => state.setData);
 
@@ -29,6 +30,7 @@ const Gender = ({ navigation }) => {
         allGenders={allGenders}
         genderVal={genderVal}
         setGenderVal={handleGenderVal}
+		label={label}
       />
       <View style={{ flexDirection: "column-reverse" }}>
         <Button

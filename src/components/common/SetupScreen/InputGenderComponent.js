@@ -8,6 +8,7 @@ const InputGenderComponent = ({
   allGenders,
   genderVal,
   setGenderVal,
+  label
 }) => {
   return (
     <View
@@ -22,6 +23,7 @@ const InputGenderComponent = ({
         allType={allGenders}
         type={genderVal}
         setType={setGenderVal}
+		label={label}
       />
     </View>
   );

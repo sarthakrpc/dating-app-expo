@@ -15,7 +15,7 @@ const FirstName = ({ navigation }) => {
 //   console.log(useSetupStore((state) => state.setupData));
 
   const handleTextData = (newText) => {
-    const data = { firstName: newText };
+    const data = { firstName: newText.trimStart() };
     addData(data);
     //   const addData = useSetupStore((state) => state.setData(data));
     //   addData();

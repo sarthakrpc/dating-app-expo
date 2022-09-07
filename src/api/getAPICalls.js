@@ -4,7 +4,7 @@ const getApiCalls = () => {
   const axiosPrivate = useAxiosPrivate();
   const getAllInterests = async () => {
     const { data } = await axiosPrivate.get("/profile/allInterests");
-    return data;
+      return data;
   };
 
   return { getAllInterests };
