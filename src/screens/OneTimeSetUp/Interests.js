@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useCallback } from "react";
 import { View, Text } from "react-native";
 import LoadingIndicator from "../../components/common/LoadingIndicator";
 import Button from "../../components/SignUpLogin/CustomButton";
@@ -7,13 +8,16 @@ import ScreenLayout from "../../components/common/SetupScreen/splitComp/ScreenLa
 import useSetupStore from "../../hooks/useSetupStore";
 import getApiCalls from "../../api/getAPICalls";
 import postAPICalls from "../../api/postAPICalls";
-import { useCallback } from "react";
 import useAuth from "../../hooks/useAuth";
+import InfoDialog from "../../components/common/Dialogs/InfoDialog";
+import modalState from "../../hooks/shared/modalState";
 
 const Interests = ({ navigation }) => {
   const { getAllInterests } = getApiCalls();
   const { postProfileData } = postAPICalls();
   const { setAuth } = useAuth();
+
+  const { visibleInfoDialog, modalText, showInfoDialog, hideInfoDialog, handleModalText } = modalState();
 
   const { isLoading, error, data } = useQuery(["allInterest"], getAllInterests);
 
@@ -51,44 +55,54 @@ const Interests = ({ navigation }) => {
     const saved = await postProfileData(allData);
     if (saved.profileData) {
       setAuth((prev) => ({ ...prev, profileData: saved.profileData }));
+    } else {
+      handleModalText(saved);
+      showInfoDialog();
     }
-    console.log(saved);
+    // console.log(saved);
   };
   const disabled = () => {
     return myInterest.length < 3;
   };
   return (
-    <ScreenLayout>
-      {isLoading ? (
-        <LoadingIndicator />
-      ) : error ? (
-        <Text> Error... {error.message} </Text>
-      ) : (
-        <>
-          <InputInterestComponent
-            title={"Choose Your Interests"}
-            subtitleText={"Select a minimum of 3 Interests"}
-            allInterests={data}
-            handleList={handleList}
-            checkInterestList={checkInterestList}
-            updateNos={updateNos}
-            myInterest={myInterest}
-          />
-          <View style={{ flexDirection: "column-reverse" }}>
-            <Button
-              disabled={disabled()}
-              handleSubmit={handleSubmit}
-              text={"Next"}
+    <>
+      <ScreenLayout>
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : error ? (
+          <Text> Error... {error.message} </Text>
+        ) : (
+          <>
+            <InputInterestComponent
+              title={"Choose Your Interests"}
+              subtitleText={"Select a minimum of 3 Interests"}
+              allInterests={data}
+              handleList={handleList}
+              checkInterestList={checkInterestList}
+              updateNos={updateNos}
+              myInterest={myInterest}
             />
-            {/* <VisibilityCheckBox
+            <View style={{ flexDirection: "column-reverse" }}>
+              <Button
+                disabled={disabled()}
+                handleSubmit={handleSubmit}
+                text={"Next"}
+              />
+              {/* <VisibilityCheckBox
           checked={checked}
           setChecked={setChecked}
           label={"Keep my Sexual Orientation private"}
         /> */}
-          </View>
-        </>
-      )}
-    </ScreenLayout>
+            </View>
+          </>
+        )}
+      </ScreenLayout>
+      <InfoDialog
+        text={modalText}
+        hideInfoDialog={hideInfoDialog}
+        visibleInfoDialog={visibleInfoDialog}
+      />
+    </>
   );
 };
 

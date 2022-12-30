@@ -1,9 +1,7 @@
-import React from "react";
-import { ScrollView, View, StyleSheet } from "react-native";
-import { Surface } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { Surface, Subheading, Chip } from "react-native-paper";
 import { spacing } from "../style/styles";
 import TitleComponent from "./splitComp/TitleComponent";
-import { Subheading, Chip } from "react-native-paper";
 import ChipStack from "./splitComp/ChipStack";
 
 const InputInterestComponent = ({

@@ -28,7 +28,7 @@ const SexualOrientation = ({ navigation }) => {
   const setChecked = (privateSexualOrientation) => {
     const data = { privateSexualOrientation: privateSexualOrientation };
     addData(data);
-	console.log(privateSexualOrientation);
+	// console.log(privateSexualOrientation);
   };
 
   const setType = (sexualOrientation) => {

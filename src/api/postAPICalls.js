@@ -7,7 +7,10 @@ const postAPICalls = () => {
       const { data } = await axiosPrivate.post("/profile", allData);
       return data;
     } catch (error) {
-      return error.response?.data || error
+	if(error.response.status === 502){
+		return "Unexpected server error"
+	}
+      return error.response?.data.message
     }
   };
   return { postProfileData };
