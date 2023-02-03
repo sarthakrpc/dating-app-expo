@@ -11,6 +11,7 @@ registerTranslation("en", en);
 registerTranslation("en-GB", enGB);
 import { AuthProvider } from "./src/context/AuthProvider";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,10 @@ const theme = {
 };
 
 export default function App() {
+  useEffect(() => {
+    const isHermes = () => !!global.HermesInternal;
+    console.log(isHermes);
+  }, []);
   return (
     <PaperProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
